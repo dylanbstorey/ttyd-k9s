@@ -19,3 +19,6 @@ There's a provided [example deployment](k8s_deployment) but the gist is create o
 - your normal service/deployment/ingress
 - create a secret that contains your kube config
 - create service-account, role, and role-bindings
+
+
+![demo](docs/ttyd-k9s.gif)

@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ttyd-k9s
+  namespace: ttyd-k9s
+  labels:
+    app.kubernetes.io/name: ttyd-k9s
+spec:
+  type: ClusterIP
+  ports:
+    - port: 7681
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: ttyd-k9s

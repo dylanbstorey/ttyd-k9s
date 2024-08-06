@@ -1,6 +1,7 @@
 FROM tsl0922/ttyd:latest AS ttyd
 ARG TARGETPLATFORM
 ARG KUBECTL_VERSION="v1.29.0"
+ARG K9S_VERSION="v0.32.5"
 
 # Install necessary packages
 RUN apt-get update && apt-get install -y \
@@ -18,7 +19,7 @@ RUN case ${TARGETPLATFORM} in \
         "linux/amd64")  K9S_ARCH=amd64  ;; \
         "linux/arm64")  K9S_ARCH=arm64  ;; \
     esac \ 
-    && wget https://github.com/derailed/k9s/releases/download/v0.32.5/k9s_Linux_${K9S_ARCH}.tar.gz \
+    && wget https://github.com/derailed/k9s/releases/download/${K9S_VERSION}/k9s_Linux_${K9S_ARCH}.tar.gz \
     && tar -xzf k9s_Linux_${K9S_ARCH}.tar.gz \    
     && mv k9s /usr/local/bin/ \
     && rm k9s_Linux_${K9S_ARCH}.tar.gz

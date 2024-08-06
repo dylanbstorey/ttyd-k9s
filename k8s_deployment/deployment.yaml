@@ -1,0 +1,34 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ttyd-k9s
+  namespace: ttyd-k9s
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ttyd-k9s
+  template:
+    metadata:
+      labels:
+        app: ttyd-k9s
+        app.kubernetes.io/name: ttyd-k9s
+    spec:
+      serviceAccountName: ttyd-k9s-sa
+      containers:
+        - name: ttyd-k9s
+          image: dylanbstorey/ttyd-k9s:latest
+          ports:
+            - name: http
+              containerPort: 7681
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /root/.kube/config
+              subPath: config
+              name: k9s-kube-config
+              readOnly: true
+      volumes:
+        - name: k9s-kube-config
+          secret:
+            secretName: k9s-kube-config

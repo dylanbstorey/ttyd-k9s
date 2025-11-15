@@ -1,7 +1,7 @@
 FROM tsl0922/ttyd:latest AS ttyd
 ARG TARGETPLATFORM
 ARG KUBECTL_VERSION="v1.29.0"
-ARG K9S_VERSION="v0.32.5"
+ARG K9S_VERSION="v0.50.16"
 
 # Install necessary packages
 RUN apt-get update && apt-get install -y \
